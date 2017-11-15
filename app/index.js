@@ -10,7 +10,9 @@ import * as reducers from './reducers'
 import routes from './routes'
 
 const rootReducer = combineReducers(reducers)
-const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)))
+const initialState = window.__INITIAL_STATE__
+delete window.__INITIAL_STATE__
+const store = createStore(rootReducer, initialState, composeWithDevTools(applyMiddleware(thunk)))
 
 ReactDOM.hydrate(
   <Provider store={store}>

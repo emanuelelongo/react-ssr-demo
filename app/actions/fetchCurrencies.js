@@ -1,3 +1,4 @@
+import fetch from 'isomorphic-fetch'
 import { FETCH_CURRENCIES } from '../constants/actionTypes'
 
 export default function fetchCurrencies() {

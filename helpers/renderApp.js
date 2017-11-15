@@ -14,6 +14,7 @@ function renderApp(path, store, routes) {
     </Provider>
 
   const appHTML = renderToString(view)
+  const initialState = store.getState();
   
   const HTML = `
     <!DOCTYPE html>
@@ -21,6 +22,9 @@ function renderApp(path, store, routes) {
       <head>
         <meta charset="utf-8">
         <title>React SSR Demo</title>
+        <script>
+          window.__INITIAL_STATE__ = ${JSON.stringify(initialState)};
+        </script>
       </head>
       <body>
         <div id="root">${appHTML}</div>

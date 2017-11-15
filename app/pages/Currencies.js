@@ -29,6 +29,8 @@ class Currencies extends React.Component {
   }
 }
 
+Currencies.requirements = [fetchCurrencies]
+
 function mapStateToProps(state) {
   return {
     currencies: state.currencies,

@@ -2,14 +2,16 @@ import React from 'react'
 import { renderRoutes } from 'react-router-config';
 import { renderToString } from 'react-dom/server'
 import { StaticRouter as Router } from 'react-router-dom'
+import { Provider } from 'react-redux';
 
-
-function renderApp(path, routes) {
+function renderApp(path, store, routes) {
   const context = {}
   const view =
-    <Router location={path} context={context}>
-      <div>{renderRoutes(routes)}</div>
-    </Router>
+    <Provider store={store}>
+      <Router location={path} context={context}>
+        <div>{renderRoutes(routes)}</div>
+      </Router>
+    </Provider>
 
   const appHTML = renderToString(view)
   

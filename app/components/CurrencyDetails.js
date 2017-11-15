@@ -1,22 +1,9 @@
 import React from 'react';
 
 export default class CurrencyDetails extends React.Component {
-  constructor() {
-    super()
-    this.state = { details: {} }
-  }
-
-  fetchDetails(id) {
-    fetch(`https://api.gdax.com/products/${id}/ticker`)
-      .then(response => response.json())
-      .then(data => {
-        this.setState({details: data})
-      })
-  }
-
   componentDidMount() {
     const id = this.props.match.params.id
-    this.fetchDetails(id)
+    this.props.fetchDetails(id)
   }
 
   componentWillUpdate(nextProps, nextState) {
@@ -24,12 +11,12 @@ export default class CurrencyDetails extends React.Component {
     const nextId = nextProps.match.params.id
 
     if(currentId !== nextId) {
-      this.fetchDetails(nextId)
+      this.props.fetchDetails(nextId)
     }
   }
 
   render() {
-    const { price, ask, bid } = this.state.details
+    const { price, ask, bid } = this.props.details
     return (
       <div>
         <div>Currency pair: { this.props.match.params.id }</div>

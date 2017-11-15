@@ -1,10 +1,4 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
-  template: './app/index.html',
-  filename: 'index.html',
-  inject: 'body'
-})
 
 module.exports = {
   // what the bundle will contain
@@ -21,8 +15,5 @@ module.exports = {
     loaders: [
       { test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/ }
     ]
-  },
-
-  // using a html template 
-  plugins: [HtmlWebpackPluginConfig]
+  }
 }

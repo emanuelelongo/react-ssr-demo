@@ -1,5 +1,3 @@
-require('babel-core/register')({});
-require('babel-polyfill');
 var server = require('./server').default;
 
 var PORT = process.env.PORT || 8080;

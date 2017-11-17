@@ -13,22 +13,27 @@
   "author": "Emanuele Longo",
   "license": "MIT",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development node ."
+    "dev": "cross-env NODE_ENV=development babel-node src",
+    "build": "npm run build:server && npm run build:assets",
+    "build:server": "cross-env NODE_ENV=production babel src --out-dir build --copy-files",
+    "build:assets": "cross-env NODE_ENV=production webpack --progress --color -p --config webpack.config.js",
+    "start": "cross-env NODE_ENV=production node build",
+    "clean": "rimraf build && rimraf node_modules"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
     "cross-env": "^5.1.1",
+    "rimraf": "^2.6.2",
     "webpack-dev-middleware": "^1.12.0",
     "webpack-hot-middleware": "^2.20.0"
   },
   "dependencies": {
-    "babel-polyfill": "^6.26.0",
     "express": "^4.16.2",
-    "html-webpack-plugin": "^2.30.1",
     "isomorphic-fetch": "^2.2.1",
     "path": "^0.12.7",
     "react": "^16.1.1",
@@ -39,7 +44,6 @@
     "redux": "^3.7.2",
     "redux-devtools-extension": "^2.13.2",
     "redux-thunk": "^2.2.0",
-    "webpack": "^3.8.1",
-    "webpack-dev-server": "^2.9.4"
+    "webpack": "^3.8.1"
   }
 }

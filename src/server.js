@@ -9,7 +9,7 @@ import { renderApp, fetchComponentData, matchRouteComponents } from './helpers'
 const server = express()
 const rootReducer = combineReducers(reducers);
 
-server.use(express.static(path.join(__dirname, 'dist')))
+server.use(express.static(path.join(__dirname, 'assets')))
 
 if (process.env.NODE_ENV === 'development') {
   require('./dev-middleware').default(server)

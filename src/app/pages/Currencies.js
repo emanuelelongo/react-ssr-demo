@@ -1,13 +1,16 @@
 import React from 'react';
 import { Route } from 'react-router-dom'
 import { connect } from 'react-redux'
+import matchPath from 'react-router/matchPath'
 import CurrencyItem from '../components/CurrencyItem'
 import CurrencyDetails from '../components/CurrencyDetails'
 import { fetchCurrencies, fetchCurrencyDetails } from '../actions'
 
 class Currencies extends React.Component {
   componentDidMount() {
-    this.props.fetchCurrencies()
+    if(this.props.currencies.length === 0) {
+      this.props.fetchCurrencies()
+    }
   }
 
   render() {
@@ -29,7 +32,10 @@ class Currencies extends React.Component {
   }
 }
 
-Currencies.requirements = [fetchCurrencies]
+Currencies.requirements = [
+  fetchCurrencies,
+  ['/currencies/:id', (params) => fetchCurrencyDetails(params.id) ]
+]
 
 function mapStateToProps(state) {
   return {

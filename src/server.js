@@ -19,7 +19,7 @@ server.use((req, res) => {
   const store = createStore(rootReducer, applyMiddleware(thunk))
   const components = matchRouteComponents(req.path, routes)
   
-  fetchComponentData(store.dispatch, components)
+  fetchComponentData(store.dispatch, components, req.path)
   .then(() => {
     const HTML = renderApp(req.path, store, routes)
     res.type("text/html; charset=UTF-8")

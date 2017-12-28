@@ -3,7 +3,9 @@ import React from 'react';
 export default class CurrencyDetails extends React.Component {
   componentDidMount() {
     const id = this.props.match.params.id
-    this.props.fetchDetails(id)
+    if(Object.keys(this.props.details).length === 0) {
+      this.props.fetchDetails(id)
+    }
   }
 
   componentWillUpdate(nextProps, nextState) {
